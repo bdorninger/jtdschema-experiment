@@ -7,7 +7,8 @@ import { schemaString} from './schema';
 
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
-appDiv.innerHTML = `<h1>TypeScript Starter</h1>`;
+const jsonDiv: HTMLElement = document.getElementById('json');
+
 
 const ajv = new Ajv({allErrors: true});
 
@@ -31,7 +32,7 @@ interface EvsNavModel extends EvsNavNode {
 const schema = JSON.parse(schemaString);
 
 
-console.log(JSON.stringify(schema,undefined,2));
+// console.log(JSON.stringify(schema,undefined,2));
 
 // validate is a type guard for MyData - type is inferred from schema type
 const validate = ajv.compile<JTDSchemaType<EvsNavModel>>(schema);
@@ -44,10 +45,12 @@ doValidation(robotdata);
 function doValidation(data: Object) {
   if (validate(data)) {
    // data is EvsNavModel here
+   const text = JSON.stringify(data, undefined, 2);
    appDiv.innerHTML="Success"
-   console.log(JSON.stringify(data, undefined, 2));
+   jsonDiv.innerHTML=`<pre>${text}</pre>`
+   console.log("Success");
   } else {
    appDiv.innerHTML=`Failure: <b>${validate.errors[0].instancePath}</b> ${validate.errors[0].message}`
-   console.log(validate.errors);
+   console.error(validate.errors);
   }
 }
