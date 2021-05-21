@@ -1,3 +1,5 @@
+import { EvsNavModel } from './navmodel';
+
 export const robotdata = {
   id: 'DesktopModel',
   routes: [
