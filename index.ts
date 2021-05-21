@@ -11,9 +11,9 @@ import { compileSchema7 } from './schema7';
 const appDiv: HTMLElement = document.getElementById('app');
 const jsonDiv: HTMLElement = document.getElementById('json');
 
-const ajv = new Ajv({ allErrors: true });
+//const ajv = new Ajv({ allErrors: true });
 
-const schema = JSON.parse(schemaString);
+//const schema = JSON.parse(schemaString);
 
 // console.log(JSON.stringify(schema,undefined,2));
 
@@ -34,7 +34,7 @@ function doValidation(data: Object) {
     jsonDiv.innerHTML = `<pre>${text}</pre>`;
     console.log('Success');
   } else {
-    appDiv.innerHTML = `Failure: <b>${validate.errors[0].instancePath}</b> ${
+    appDiv.innerHTML = `Failure: <b>'${validate.errors[0].instancePath}'</b> ${
       validate.errors[0].message
     }`;
     console.error(validate.errors);

@@ -10,19 +10,40 @@ const schema: JSONSchemaType<EvsNavModel> = {
   $id: 'urn:at.engel.cc4:schemata:nav-model',
 
   allOf: [
-    { $ref: '#/definitions/groupDef' },
+    // { $ref: '#/definitions/groupDef' },
     {
       properties: {
+        id: {
+          type: 'string'
+        },
+        icon: {
+          type: 'string'
+        },
+        text: {
+          type: 'string'
+        },
         routes: {
           type: 'array',
           items: {
             $ref: '#/definitions/routeDef'
           }
+        },
+        childGroups: {
+          items: {
+            $ref: '#/definitions/groupDef'
+          }
+        },
+        links: {
+          items: {
+            $ref: '#/definitions/linkDef'
+          }
         }
-      }
+      },
+      additionalProperties: false
     }
   ],
-  required: ['routes'],
+  required: ['id', 'routes'],
+
   definitions: {
     navNodeDef: {
       properties: {
@@ -47,6 +68,7 @@ const schema: JSONSchemaType<EvsNavModel> = {
               type: 'string'
             },
             parameters: {
+              type: 'object',
               additionalProperties: true
             }
           }
