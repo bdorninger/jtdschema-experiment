@@ -45,24 +45,20 @@ const schema: JSONSchemaType<EvsNavModel> = {
   type: 'object',
 
   definitions: {
-    metaDef: {
-      properties: {
-        icon: {
-          type: 'string'
-        },
-        text: {
-          type: 'string'
-        }
-      }
-    },
     navNodeDef: {
       properties: {
         id: {
           type: 'string'
+        },
+        text: {
+          type: 'string'
+        },
+        icon: {
+          type: 'string'
         }
       },
       required: ['id'],
-      additionalProperties: { $ref: '#/definitions/metaDef' },
+      additionalProperties: false,
       type: 'object'
     },
     routeDef: {
@@ -73,18 +69,30 @@ const schema: JSONSchemaType<EvsNavModel> = {
         componentId: {
           type: 'string'
         },
+        text: {
+          type: 'string'
+        },
+        icon: {
+          type: 'string'
+        },
         parameters: {
           type: 'object',
           additionalProperties: true
         }
       },
       required: ['id', 'componentId'],
-      additionalProperties: { $ref: '#/definitions/metaDef' },
+      additionalProperties: false,
       type: 'object'
     },
     groupDef: {
       properties: {
         id: {
+          type: 'string'
+        },
+        text: {
+          type: 'string'
+        },
+        icon: {
           type: 'string'
         },
         childGroups: {
@@ -101,7 +109,7 @@ const schema: JSONSchemaType<EvsNavModel> = {
         }
       },
       required: ['id'],
-      additionalProperties: { $ref: '#/definitions/metaDef' }
+      additionalProperties: false
     },
     linkDef: {
       allOf: [{ $ref: '#/definitions/navNodeDef' }]

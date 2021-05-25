@@ -1,6 +1,6 @@
 import Ajv, { JTDSchemaType, ValidateFunction } from 'ajv/dist/jtd';
 import { EvsNavModel } from './navmodel';
-import { jsonTypeDefSchemaString } from './schema';
+import { jsonTypeDefSchemaString } from './schemaTypedef';
 
 /**
  * Test code for RFC8797 style JSON schemata (JSON Type Definition)
