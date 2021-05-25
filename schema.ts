@@ -1,4 +1,8 @@
-export const schemaString = `{
+/**
+ * nav model schema: RFC8927 JSON Type Definition style
+ */
+
+export const jsonTypeDefSchemaString = `{
   "properties": {
     "id": {
       "type": "string"

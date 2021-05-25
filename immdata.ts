@@ -30,7 +30,8 @@ export const immdata = {
       text: 'Machine CycleTime Mask',
       componentId: 'evs-model-based-view',
       parameters: {
-        view: 'com.engel.cc300.hmi.imm.cycletime.MachineCycleTimeMask'
+        view: 'com.engel.cc300.hmi.imm.cycletime.MachineCycleTimeMask',
+        foo: 'bar'
       }
     },
     {
@@ -340,13 +341,16 @@ export const immdata = {
           icon: 'Production.svg',
           links: [
             {
-              id: 'InjectionUnit1.hmi.PrePostInjMask'
+              id: 'InjectionUnit1.hmi.PrePostInjMask',
+              text: 'link text'
             },
             {
-              id: 'InjectionUnit1.hmi.PlastInjMask'
+              id: 'InjectionUnit1.hmi.PlastInjMask',
+              icon: 'alternative-icon.png'
             },
             {
               id: 'InjectionUnit1.hmi.PlastUnitMask'
+              // unknownProp: 'foo-bar'  --> will fail the vaidation
             },
             {
               id: 'InjectionUnit1.hmi.WeightWatcherMonitorMask'
