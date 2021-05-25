@@ -1,6 +1,10 @@
 import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
 import { EvsNavModel } from './navmodel';
-import { robotdata } from './robotdata';
+
+/**
+ * nav model schema: JSON Schema draft07 style
+ *
+ */
 
 const ajv = new Ajv({ allErrors: true });
 
@@ -14,12 +18,6 @@ const schema: JSONSchemaType<EvsNavModel> = {
 
   properties: {
     id: {
-      type: 'string'
-    },
-    icon: {
-      type: 'string'
-    },
-    text: {
       type: 'string'
     },
     routes: {
@@ -47,31 +45,29 @@ const schema: JSONSchemaType<EvsNavModel> = {
   type: 'object',
 
   definitions: {
-    navNodeDef: {
+    metaDef: {
       properties: {
-        id: {
-          type: 'string'
-        },
         icon: {
           type: 'string'
         },
         text: {
           type: 'string'
         }
+      }
+    },
+    navNodeDef: {
+      properties: {
+        id: {
+          type: 'string'
+        }
       },
       required: ['id'],
-      additionalProperties: false,
+      additionalProperties: { $ref: '#/definitions/metaDef' },
       type: 'object'
     },
     routeDef: {
       properties: {
         id: {
-          type: 'string'
-        },
-        icon: {
-          type: 'string'
-        },
-        text: {
           type: 'string'
         },
         componentId: {
@@ -83,18 +79,12 @@ const schema: JSONSchemaType<EvsNavModel> = {
         }
       },
       required: ['id', 'componentId'],
-      additionalProperties: false,
+      additionalProperties: { $ref: '#/definitions/metaDef' },
       type: 'object'
     },
     groupDef: {
       properties: {
         id: {
-          type: 'string'
-        },
-        icon: {
-          type: 'string'
-        },
-        text: {
           type: 'string'
         },
         childGroups: {
@@ -111,7 +101,7 @@ const schema: JSONSchemaType<EvsNavModel> = {
         }
       },
       required: ['id'],
-      additionalProperties: false
+      additionalProperties: { $ref: '#/definitions/metaDef' }
     },
     linkDef: {
       allOf: [{ $ref: '#/definitions/navNodeDef' }]
